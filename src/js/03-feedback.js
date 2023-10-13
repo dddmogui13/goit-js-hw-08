@@ -18,9 +18,18 @@ function setData(dataObj) {
 function handleSubmit(event) {
   event.preventDefault();
   const { email, message } = form.elements;
-  console.log(email.value, message.value);
-  form.reset();
-  localStorage.removeItem(LOCAL_KEY);
+
+  if (email.value.trim() !== '' && message.value.trim() !== '') {
+    const dataObj = {
+      email: email.value,
+      message: message.value,
+    };
+    console.log(dataObj);
+    form.reset();
+    localStorage.removeItem(LOCAL_KEY);
+  } else {
+    alert('Будь ласка, заповніть усі поля форми.');
+  }
 }
 
 function restoreFormData() {
